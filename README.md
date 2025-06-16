@@ -87,7 +87,7 @@ window.dataLayer.push({
 ```javascript
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
-  'event': 'account_created',
+  'event': 'sign_up',
   'user_id': '1234567', // Replace with actual user ID
   'user_email': 'x0f5552030a723243cc2f42b38a53b6fb794c', // SHA256 hashed
   'user_phone_number': '8a8f59b70e74b46b21d8aa405c5' // SHA256 hashed
