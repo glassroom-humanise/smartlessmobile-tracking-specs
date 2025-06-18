@@ -233,7 +233,7 @@ dataLayer.push({
       item_id: "10gb_plan",
       item_name: "10GB Plan",
       item_category: "subscription",
-      item_variant: "monthly - eSIM",
+      item_variant: "eSIM",
       price: 21.5,
       currency: "USD",
       quantity: 1
