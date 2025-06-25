@@ -16,6 +16,65 @@ This guide provides complete implementation details for tracking user interactio
 
 ## Implementation Overview
 
+**Step 0: Adjust the existing Google Tag Manager code**
+
+Your current Google Tag Manager code may currently look like this:
+
+```html
+<script type="text/plain" data-usercentrics="Google Tag Manager">
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5LWJ2KLC');</script>
+```
+
+This needs to be changed to the following:
+
+Please make sure to put these scripts at the very top of the `<head>` and on the same order as below.
+
+**⚠️ To adjust the default measurement capabilities, set the default values for the command to run on every page of your site before any commands that send measurement data (such as config or event).**
+
+```html
+<script type="text/javascript">
+    // create dataLayer
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    // set „denied" as default for both ad and analytics storage, as well as ad_user_data and ad_personalization,
+    gtag("consent", "default", {
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        ad_storage: "denied",
+        analytics_storage: "denied",
+        wait_for_update: 2000 // milliseconds to wait for update
+    });
+
+    // Enable ads data redaction by default [optional]
+    gtag("set", "ads_data_redaction", true);
+</script>
+
+<script type="text/javascript">
+    // Google Tag Manager
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5LWJ2KLC'); 
+</script>
+```
+
 ### 1. Page Tracking
 
 #### A. Landing Page Attribution
