@@ -292,6 +292,8 @@ dataLayer.push({
       item_id: "10gb_plan",
       item_name: "10GB Plan",
       item_category: "subscription",
+      item_category2: "Iphone 16",      // device model
+      item_category3: "Apple",          // device brand
       item_variant: "eSIM",
       price: 21.5,
       currency: "USD",
